@@ -1,9 +1,11 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :change]
 
   # GET /tasks
   # GET /tasks.json
+  respond_to :html
+
   def index
     @to_do = current_user.tasks.where(state: "to_do")
     @doing = current_user.tasks.where(state: "doing")
@@ -16,6 +18,12 @@ class TasksController < ApplicationController
   def show
   end
 
+  def change
+    @task.update_attributes(state: params[:state])
+    respond_to do |format|
+      format.html {redirect_to tasks_path, notice: "Task Update"}
+    end
+  end
   # GET /tasks/new
   def new
     @task = Task.new
