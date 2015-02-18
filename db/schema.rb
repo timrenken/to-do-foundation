@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150217230303) do
+ActiveRecord::Schema.define(version: 20150218013929) do
 
   create_table "tasks", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "state",      default: "to_do"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "state",        default: "to_do"
+    t.text     "content_html"
   end
 
   create_table "users", force: :cascade do |t|

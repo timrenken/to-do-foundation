@@ -19,6 +19,9 @@
 
     <!-- Left Nav Section -->
     <ul class="left">
+      <% if current_user %>
+      <%= link_to 'New Task', new_task_path, class: 'button small success' %>
+      <% end %>
     </ul>
   </section>
 </nav>
