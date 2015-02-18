@@ -1,21 +1,18 @@
-
-
-	<%= link_to edit_task_path(task) do %>
+<%= link_to edit_task_path(task) do %>
   <div class='panel callout'>
 	created <%= time_ago_in_words(task.created_at) %> ago
+    <%= link_to "x", task_path(task), method: :delete, data: {confirm: "Are you sure?"}, class: "pull-right" %>
   </div>
-	<% end %>
-
-	<div class="panel"><%= task.content %></div>
- 
-	<div class="text-center">
-		<% if task.state == "doing" %>
-		  <div class="button-group">
-		    <%= link_to "<i class='fa fa-arrow-left'></i>".html_safe, change_task_path(task, state: "to_do"), method: :put, class: "button small info" %><%= link_to "<i class='fa fa-arrow-right'></i>".html_safe, change_task_path(task, state: "done"), method: :put, class: "button small info" %>
-      </div>
+<% end %>
+<div class="panel"><%= task.content %></div>
+<div class="text-center">
+  <% if task.state == "doing" %>
+		<div class="button-group">
+		  <%= link_to "<i class='fa fa-arrow-left'></i>".html_safe, change_task_path(task, state: "to_do"), method: :put, class: "button small info" %><%= link_to "<i class='fa fa-arrow-right'></i>".html_safe, change_task_path(task, state: "done"), method: :put, class: "button small info" %>
+    </div>
 		<% elsif task.state == "done" %>
-		<%= link_to "<i class='fa fa-arrow-left'></i>".html_safe, change_task_path(task, state: "doing"), method: :put, class: "button small info" %>
+		  <%= link_to "<i class='fa fa-arrow-left'></i>".html_safe, change_task_path(task, state: "doing"), method: :put, class: "button small info" %>
 		<% else %>
-		<%= link_to "<i class='fa fa-arrow-right'></i>".html_safe, change_task_path(task, state: "doing"), method: :put, class: "button small info" %>
-		<% end %>
-	</div>
+		  <%= link_to "<i class='fa fa-arrow-right'></i>".html_safe, change_task_path(task, state: "doing"), method: :put, class: "button small info" %>
+  <% end %>
+</div>
