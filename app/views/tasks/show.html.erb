@@ -1,14 +1,11 @@
 <p id="notice"><%= notice %></p>
- 
-<p>
-  <strong>Content:</strong>
-  <%= @task.content %>
-</p>
- 
-<p>
-  <strong>State:</strong>
-  <%= @task.state %>
-</p>
- 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+
+<div class='medium-4 medium-offset-4 columns'>
+<div class='panel callout'>
+	<h6>created <%= time_ago_in_words(@task.created_at) %> ago
+    <%= link_to "x", task_path(@task), method: :delete, data: {confirm: "Are you sure?"}, class: "pull-right" %></h6>
+</div>
+<div class="panel"><h6><%= raw(@task.content_html) %></h6></div>
+  <%= link_to 'Edit', edit_task_path(@task), class: 'button expand small info' %>
+<%= link_to 'Back', tasks_path, class: 'button expand small secondary' %>
+</div>
